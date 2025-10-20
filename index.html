@@ -12,34 +12,38 @@
 
   <script>
     async function loadWords() {
-      const response = await fetch("words.json");
-      const words = await response.json();
+      try {
+        const response = await fetch("words.json");
+        const words = await response.json();
 
-      const container = document.getElementById("flashcards");
-      container.innerHTML = "";
+        const container = document.getElementById("flashcards");
+        container.innerHTML = "";
 
-      words.forEach(word => {
-        const card = document.createElement("div");
-        card.className = "card";
+        words.forEach(word => {
+          const card = document.createElement("div");
+          card.className = "card";
 
-        card.innerHTML = `
-          <div class="card-inner">
-            <div class="card-front">
-              <h2>${word.word}</h2>
+          card.innerHTML = `
+            <div class="card-inner">
+              <div class="card-front">
+                <h2>${word.word}</h2>
+              </div>
+              <div class="card-back">
+                <p><b>Definition:</b> ${word.definition}</p>
+                <p><b>Example:</b> ${word.example}</p>
+              </div>
             </div>
-            <div class="card-back">
-              <p><b>Definition:</b> ${word.definition}</p>
-              <p><b>Example:</b> ${word.example}</p>
-            </div>
-          </div>
-        `;
+          `;
 
-        card.addEventListener("click", () => {
-          card.querySelector(".card-inner").classList.toggle("flipped");
+          card.addEventListener("click", () => {
+            card.querySelector(".card-inner").classList.toggle("flipped");
+          });
+
+          container.appendChild(card);
         });
-
-        container.appendChild(card);
-      });
+      } catch (err) {
+        console.error("Error loading words:", err);
+      }
     }
 
     loadWords();
