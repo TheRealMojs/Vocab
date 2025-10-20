@@ -3,50 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome | therealmojs</title>
-  <style>
-    body {
-      background: linear-gradient(135deg, #0a0a0a, #1f1f1f);
-      color: #fff;
-      font-family: "Poppins", sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
-    }
-    h1 {
-      font-size: 3em;
-      margin-bottom: 0.3em;
-    }
-    p {
-      font-size: 1.2em;
-      color: #b3b3b3;
-      max-width: 600px;
-    }
-    .btn {
-      margin-top: 25px;
-      padding: 12px 28px;
-      font-size: 1.1em;
-      background: #4f46e5;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background: #4338ca;
-      transform: scale(1.05);
-    }
-  </style>
+  <title>Mojs SAT Vocab</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Welcome to therealmojs 🚀</h1>
-  <p>This site is powered by GitHub Pages.<br> You can add your projects, notes, or portfolio here!</p>
-  <button class="btn" onclick="alert('More content coming soon!')">Explore</button>
+  <header>
+    <h1>📘 SAT Vocabulary List</h1>
+    <input type="text" id="search" placeholder="Search for a word..." />
+  </header>
+
+  <main>
+    <table id="vocabTable">
+      <thead>
+        <tr>
+          <th>Word</th>
+          <th>Definition</th>
+          <th>SAT Example</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </main>
+
+  <footer>
+    <p>Made by <strong>therealmojs</strong> 🧠 | Built with ❤️ using GitHub Pages</p>
+  </footer>
+
+  <script src="words.js"></script>
+  <script>
+    const search = document.getElementById("search");
+    const tableBody = document.getElementById("tableBody");
+
+    function renderTable(filter = "") {
+      tableBody.innerHTML = "";
+      const filtered = words.filter(w =>
+        w.word.toLowerCase().includes(filter.toLowerCase())
+      );
+      filtered.forEach(item => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.word}</td>
+          <td>${item.definition}</td>
+          <td>${item.example}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    search.addEventListener("input", e => renderTable(e.target.value));
+    renderTable();
+  </script>
 </body>
 </html>
-
