@@ -23,10 +23,20 @@
         card.className = "card";
 
         card.innerHTML = `
-          <h2>${word.word}</h2>
-          <p class="definition">${word.definition}</p>
-          <p class="example">${word.example}</p>
+          <div class="card-inner">
+            <div class="card-front">
+              <h2>${word.word}</h2>
+            </div>
+            <div class="card-back">
+              <p class="definition">${word.definition}</p>
+              <p class="example">${word.example}</p>
+            </div>
+          </div>
         `;
+
+        card.addEventListener("click", () => {
+          card.classList.toggle("flipped");
+        });
 
         container.appendChild(card);
       });
