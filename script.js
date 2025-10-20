@@ -1,5 +1,5 @@
 const BIN_ID = "68f69f8fd0ea881f40af338e";
-const API_KEY = "YOUR_API_KEY_HERE"; // حط هنا الـ secret key بتاعك
+const API_KEY = "$2a$10$TYF1HVKJv1mpufhKpXwDlejF3TsgsXz8bd5iQ/KvgM1EeRauobjkq"; 
 const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
 const container = document.getElementById("flashcards");
