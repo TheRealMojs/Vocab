@@ -3,60 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mojs SAT Vocab</title>
+  <title>Vocab Flashcards</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>📘 SAT Vocabulary List</h1>
-    <div class="top-bar">
-      <input type="text" id="search" placeholder="Search for a word..." />
-      <button id="addBtn">➕ Add Word</button>
-    </div>
-  </header>
+  <h1>📚 Vocabulary Flashcards</h1>
+  <div id="flashcards-container"></div>
 
-  <main>
-    <table id="vocabTable">
-      <thead>
-        <tr>
-          <th>Word</th>
-          <th>Definition</th>
-          <th>Synonyms</th>
-          <th>SAT Example</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody"></tbody>
-    </table>
-  </main>
+  <script>
+    async function loadWords() {
+      const response = await fetch("words.json");
+      const words = await response.json();
 
-  <!-- Modal for adding new word -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <h2>Add New Word</h2>
-      <label>Word:</label>
-      <input type="text" id="newWord" />
+      const container = document.getElementById("flashcards-container");
+      container.innerHTML = "";
 
-      <label>Definition:</label>
-      <input type="text" id="newDefinition" />
+      words.forEach(word => {
+        const card = document.createElement("div");
+        card.className = "card";
 
-      <label>Synonyms:</label>
-      <input type="text" id="newSynonyms" placeholder="comma separated" />
+        card.innerHTML = `
+          <h2>${word.word}</h2>
+          <p class="definition">${word.definition}</p>
+          <p class="example">${word.example}</p>
+        `;
 
-      <label>Example:</label>
-      <textarea id="newExample"></textarea>
+        container.appendChild(card);
+      });
+    }
 
-      <div class="modal-actions">
-        <button id="saveWord">Save</button>
-        <button id="cancel">Cancel</button>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <p>Made by <strong>therealmojs</strong> 🧠 | Built with ❤️ using GitHub Pages</p>
-  </footer>
-
-  <script src="words.js"></script>
-  <script src="script.js"></script>
+    loadWords();
+  </script>
 </body>
 </html>
