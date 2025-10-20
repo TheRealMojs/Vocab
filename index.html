@@ -7,15 +7,15 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>📚 Vocabulary Flashcards</h1>
-  <div id="flashcards-container"></div>
+  <h1>Vocab Flashcards</h1>
+  <div id="flashcards" class="flashcards"></div>
 
   <script>
     async function loadWords() {
       const response = await fetch("words.json");
       const words = await response.json();
 
-      const container = document.getElementById("flashcards-container");
+      const container = document.getElementById("flashcards");
       container.innerHTML = "";
 
       words.forEach(word => {
@@ -28,14 +28,14 @@
               <h2>${word.word}</h2>
             </div>
             <div class="card-back">
-              <p class="definition">${word.definition}</p>
-              <p class="example">${word.example}</p>
+              <p><b>Definition:</b> ${word.definition}</p>
+              <p><b>Example:</b> ${word.example}</p>
             </div>
           </div>
         `;
 
         card.addEventListener("click", () => {
-          card.classList.toggle("flipped");
+          card.querySelector(".card-inner").classList.toggle("flipped");
         });
 
         container.appendChild(card);
