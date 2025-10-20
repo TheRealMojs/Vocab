@@ -9,7 +9,10 @@
 <body>
   <header>
     <h1>📘 SAT Vocabulary List</h1>
-    <input type="text" id="search" placeholder="Search for a word..." />
+    <div class="top-bar">
+      <input type="text" id="search" placeholder="Search for a word..." />
+      <button id="addBtn">➕ Add Word</button>
+    </div>
   </header>
 
   <main>
@@ -18,6 +21,7 @@
         <tr>
           <th>Word</th>
           <th>Definition</th>
+          <th>Synonyms</th>
           <th>SAT Example</th>
         </tr>
       </thead>
@@ -25,33 +29,34 @@
     </table>
   </main>
 
+  <!-- Modal for adding new word -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h2>Add New Word</h2>
+      <label>Word:</label>
+      <input type="text" id="newWord" />
+
+      <label>Definition:</label>
+      <input type="text" id="newDefinition" />
+
+      <label>Synonyms:</label>
+      <input type="text" id="newSynonyms" placeholder="comma separated" />
+
+      <label>Example:</label>
+      <textarea id="newExample"></textarea>
+
+      <div class="modal-actions">
+        <button id="saveWord">Save</button>
+        <button id="cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <p>Made by <strong>therealmojs</strong> 🧠 | Built with ❤️ using GitHub Pages</p>
   </footer>
 
   <script src="words.js"></script>
-  <script>
-    const search = document.getElementById("search");
-    const tableBody = document.getElementById("tableBody");
-
-    function renderTable(filter = "") {
-      tableBody.innerHTML = "";
-      const filtered = words.filter(w =>
-        w.word.toLowerCase().includes(filter.toLowerCase())
-      );
-      filtered.forEach(item => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${item.word}</td>
-          <td>${item.definition}</td>
-          <td>${item.example}</td>
-        `;
-        tableBody.appendChild(row);
-      });
-    }
-
-    search.addEventListener("input", e => renderTable(e.target.value));
-    renderTable();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
