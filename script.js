@@ -1,5 +1,5 @@
 const BIN_ID = "68f69f8fd0ea881f40af338e";
-const API_KEY = "$2a$10$TYF1HVKJv1mpufhKpXwDlejF3TsgsXz8bd5iQ/KvgM1EeRauobjkq"; 
+const API_KEY = "$2a$10$dDxk1WIbEIDpZU0c0ZVFFO7pQNpFc452x.DcbtmuXcAvi0vSKIX6C"; 
 const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
 const container = document.getElementById("flashcards");
