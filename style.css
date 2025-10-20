@@ -1,6 +1,6 @@
 body {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #f9f9f9, #e9f0ff);
+  background: #f4f6fb;
   color: #333;
   margin: 0;
   padding: 20px;
@@ -8,71 +8,61 @@ body {
 }
 
 h1 {
+  color: #222;
   margin-bottom: 30px;
-  color: #2a4d9b;
 }
 
-#flashcards-container {
+.flashcards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-  max-width: 1000px;
-  margin: auto;
-  perspective: 1000px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  padding: 10px;
 }
 
-/* كل كارت */
 .card {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  cursor: pointer;
+  width: 250px;
+  height: 180px;
   perspective: 1000px;
+  cursor: pointer;
 }
 
-/* العنصر الداخلي اللي بيقلب */
 .card-inner {
-  position: relative;
   width: 100%;
   height: 100%;
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
 
-/* لما الكارت يتقلب */
-.card.flipped .card-inner {
+.card-inner.flipped {
   transform: rotateY(180deg);
 }
 
-/* وش الكارت وظهره */
 .card-front,
 .card-back {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
   border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backface-visibility: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 15px;
+  box-sizing: border-box;
 }
 
-/* وش الكارت */
 .card-front {
-  background: #ffffff;
-  color: #2a4d9b;
-  font-size: 1.6em;
-  font-weight: bold;
+  background: white;
+  color: #333;
+  font-weight: 600;
+  font-size: 1.3rem;
 }
 
-/* ظهر الكارت */
 .card-back {
-  background: #2a4d9b;
+  background: #1e88e5;
   color: white;
   transform: rotateY(180deg);
-  flex-direction: column;
-  font-size: 0.95em;
-  text-align: center;
+  text-align: left;
 }
